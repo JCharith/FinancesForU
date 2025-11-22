@@ -1,9 +1,5 @@
 import WebSocket from "ws";
 
-const FINNHUB_URL = `wss://ws.finnhub.io?token=${process.env.FINNHUB_API_KEY}`;
-
-console.log("Finnhub token prefix:", String(process.env.FINNHUB_API_KEY || "").slice(0, 4));
-
 // Store the latest price per symbol
 export const latestPrices = {};
 
@@ -18,10 +14,12 @@ export function startFinnhubStream() {
     return;
   }
 
+  console.log("Finnhub token prefix:", String(process.env.FINNHUB_API_KEY || "").slice(0, 4));
   connect();
 }
 
 function connect() {
+  const FINNHUB_URL = `wss://ws.finnhub.io?token=${process.env.FINNHUB_API_KEY}`;
   socket = new WebSocket(FINNHUB_URL);
 
   socket.on("open", () => {
