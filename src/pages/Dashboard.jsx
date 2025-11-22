@@ -4,6 +4,7 @@ import { getMarketOverview, getLiveUsMarket } from "../lib/api";
 export default function Dashboard() {
   const [market, setMarket] = useState(null);
   const [liveUs, setLiveUs] = useState(null);
+  const [liveBtc, setLiveBtc] = useState(null);
 
   useEffect(() => {
     async function load() {
@@ -21,6 +22,11 @@ export default function Dashboard() {
         const data = await getLiveUsMarket("SPY");
         if (data.hasData) {
           setLiveUs(data.price);
+        }
+
+        const btcData = await getLiveUsMarket("BINANCE:BTCUSDT");
+        if (btcData.hasData) {
+          setLiveBtc(btcData.price);
         }
       } catch (err) {
         console.error("Error fetching live US market:", err);
@@ -43,12 +49,25 @@ export default function Dashboard() {
 
       <div className="grid gap-4 md:grid-cols-3">
         <div className="bg-white rounded-xl shadow p-4">
-          <h3 className="font-medium text-slate-700">US Market (Bear)</h3>
+          <h3 className="font-medium text-slate-700">US Market</h3>
           <p className="text-xs text-slate-500 mt-1">
             Live SPY price (proxy for S&P 500).
           </p>
           <div className="mt-4 text-3xl font-semibold text-orange-500">
             {liveUs !== null ? `$${liveUs.toFixed(2)}` : "Waiting for ticks..."}
+          </div>
+          <p className="text-xs text-slate-400 mt-1">
+            Updating every few seconds from Finnhub.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-xl shadow p-4">
+          <h3 className="font-medium text-slate-700">Bitcoin (Live)</h3>
+          <p className="text-xs text-slate-500 mt-1">
+            Live BTC/USDT from Binance.
+          </p>
+          <div className="mt-4 text-3xl font-semibold text-yellow-500">
+            {liveBtc !== null ? `$${liveBtc.toFixed(2)}` : "Waiting for ticks..."}
           </div>
           <p className="text-xs text-slate-400 mt-1">
             Updating every few seconds from Finnhub.
