@@ -1,16 +1,16 @@
 import { NavLink } from "react-router-dom";
 
 const linkBase =
-  "block px-4 py-2 rounded-md text-sm transition-colors";
+  "block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out";
 const active =
-  "bg-emerald-500 text-slate-900 font-semibold";
+  "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 translate-x-1";
 const inactive =
-  "text-slate-200 hover:bg-slate-700 hover:text-white";
+  "text-slate-400 hover:bg-slate-800/50 hover:text-slate-100 hover:translate-x-1";
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:block w-60 bg-slate-900 text-slate-100 h-[calc(100vh-56px)] p-4">
-      <div className="text-xs text-slate-400 mb-3 uppercase tracking-wide">
+    <aside className="hidden md:block w-64 bg-slate-900/95 backdrop-blur-xl text-slate-100 h-[calc(100vh-64px)] p-6 border-r border-slate-800 sticky top-16">
+      <div className="text-xs font-bold text-slate-500 mb-6 uppercase tracking-wider px-4">
         Navigation
       </div>
       <nav className="space-y-2">

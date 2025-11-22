@@ -62,10 +62,6 @@ export default function BullVsBear() {
           return newData.slice(-20);
         });
       } else if (btcPrice !== null || spyPrice !== null) {
-        // If one is missing, still update combined but with null for missing? 
-        // Or just repeat last known? For simplicity, let's just push what we have.
-        // Actually, charts handle nulls gracefully usually, or we can just skip combined update if one is missing.
-        // Let's try to update with what we have.
         setCombinedData((prev) => {
           const newData = [
             ...prev,
@@ -89,40 +85,52 @@ export default function BullVsBear() {
   }, []);
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-semibold text-slate-900">
-        Bitcoin vs SPY
-      </h2>
-
-      <p className="text-sm text-slate-600">
-        Live data comparison. Left side tracks Bitcoin (Crypto), Right side tracks SPY (US Market).
-      </p>
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-3xl font-bold text-slate-900">
+          Bitcoin vs SPY
+        </h2>
+        <p className="text-slate-500 mt-2">
+          Live data comparison. Left side tracks <span className="font-semibold text-amber-600">Bitcoin</span>, Right side tracks <span className="font-semibold text-blue-600">SPY</span>.
+        </p>
+      </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="bg-white rounded-xl shadow p-4">
-          <h3 className="font-medium text-slate-700 mb-2">
-            Bitcoin (Live)
-          </h3>
-          <SingleLineChart data={bullData} dataKey="value" label="Bitcoin" />
+        <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-bl-full -mr-8 -mt-8 z-0"></div>
+          <div className="relative z-10">
+            <h3 className="font-semibold text-slate-800 mb-4 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+              Bitcoin (Live)
+            </h3>
+            <SingleLineChart data={bullData} dataKey="value" label="Bitcoin" />
+          </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow p-4">
-          <h3 className="font-medium text-slate-700 mb-2">
-            US Market - SPY (Live)
-          </h3>
-          <SingleLineChart data={bearData} dataKey="value" label="SPY" />
+        <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-8 -mt-8 z-0"></div>
+          <div className="relative z-10">
+            <h3 className="font-semibold text-slate-800 mb-4 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+              US Market - SPY (Live)
+            </h3>
+            <SingleLineChart data={bearData} dataKey="value" label="SPY" />
+          </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow p-4">
-        <h3 className="font-medium text-slate-700 mb-2">
-          Combined View
-        </h3>
-        <DualLineChart
-          data={combinedData}
-          bullKey="bull"
-          bearKey="bear"
-        />
+      <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-bl-full -mr-16 -mt-16 z-0"></div>
+        <div className="relative z-10">
+          <h3 className="font-semibold text-slate-800 mb-4">
+            Combined View
+          </h3>
+          <DualLineChart
+            data={combinedData}
+            bullKey="bull"
+            bearKey="bear"
+          />
+        </div>
       </div>
     </div>
   );
