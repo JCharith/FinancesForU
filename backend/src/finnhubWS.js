@@ -4,7 +4,10 @@ import WebSocket from "ws";
 export const latestPrices = {};
 
 // Symbols we care about for now
-const TRACKED_SYMBOLS = ["SPY", "BINANCE:BTCUSDT"]; // S&P 500 ETF (US market proxy) & Bitcoin
+const TRACKED_SYMBOLS = [
+  "SPY", "AAPL", "TSLA", "NVDA", "MSFT", "AMZN", "GOOGL", // Stocks
+  "BINANCE:BTCUSDT", "BINANCE:ETHUSDT", "BINANCE:SOLUSDT" // Crypto
+];
 
 let socket = null;
 
