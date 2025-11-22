@@ -25,7 +25,7 @@ export default function Sidebar() {
           to="/bull-vs-bear"
           className={({ isActive }) => `${linkBase} ${isActive ? active : inactive}`}
         >
-          Bull vs Bear
+          Bitcoin vs SPY
         </NavLink>
         <NavLink
           to="/stocks"

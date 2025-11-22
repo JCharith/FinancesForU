@@ -75,7 +75,7 @@ export default function Dashboard() {
         </div>
 
         <div className="bg-white rounded-xl shadow p-4">
-          <h3 className="font-medium text-slate-700">India Market (Bull)</h3>
+          <h3 className="font-medium text-slate-700">India Market</h3>
           <p className="text-3xl font-semibold text-emerald-500 mt-4">
             {market ? market.indianMarket : "Loading..."}
           </p>

@@ -91,11 +91,11 @@ export default function BullVsBear() {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold text-slate-900">
-        Bull vs Bear Markets
+        Bitcoin vs SPY
       </h2>
 
       <p className="text-sm text-slate-600">
-        Live data comparison. Bull side tracks Bitcoin (Crypto), Bear side tracks SPY (US Market).
+        Live data comparison. Left side tracks Bitcoin (Crypto), Right side tracks SPY (US Market).
       </p>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -116,7 +116,7 @@ export default function BullVsBear() {
 
       <div className="bg-white rounded-xl shadow p-4">
         <h3 className="font-medium text-slate-700 mb-2">
-          Combined Bull vs Bear View
+          Combined View
         </h3>
         <DualLineChart
           data={combinedData}
